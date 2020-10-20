@@ -14,6 +14,10 @@ const linkSchema = new mongoose.Schema(
       type: String,
       required: false,
     },
+    image: {
+      type: Buffer,
+      required: false,
+    },
     owner: {
       type: mongoose.Schema.Types.ObjectId,
       required: true,

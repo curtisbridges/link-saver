@@ -21,7 +21,7 @@ test('Should create a new link', async () => {
     .post(routes.api.links)
     .set('Authorization', `Bearer ${userOne.tokens[0].token}`)
     .send({
-      url: 'https://nodejs.org',
+      url: 'https://www.theverge.com/21524288/apple-iphone-12-pro-review',
     })
     .expect(201)
 

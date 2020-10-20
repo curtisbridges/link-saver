@@ -1,0 +1,17 @@
+POST http://localhost:3000/api/users/login HTTP/1.1
+Content-Type: application/json;
+
+{
+    "email": "curtis@example.com",
+    "password": "Red123!$"
+}
+
+###
+
+POST http://localhost:3000/api/links HTTP/1.1
+Content-Type: application/json;
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJfaWQiOiI1ZjhmNjQ1OWYyMTE4ZTBmYjI4MTIxNzYiLCJpYXQiOjE2MDMyMzI4OTB9.Uteo7dp9FLUW6rFMMw5_uAMgvfBlR5XgY3gK4r4c3Fw
+
+{
+    "url": "https://www.theverge.com/21524288/apple-iphone-12-pro-review"
+}

@@ -1,4 +1,9 @@
 const express = require('express')
+const { extract } = require('article-parser')
+const fetch = require('node-fetch')
+// const fs = require('fs')
+// const fileType = require('file-type')
+
 const { routes } = require('../constants')
 const Link = require('../models/link')
 const auth = require('../middleware/auth')
@@ -14,6 +19,15 @@ router.post(routes.api.links, auth, async (req, res) => {
   })
 
   try {
+    const article = await extract(link.url)
+    link.title = article.title
+    link.description = article.description
+
+    if (article.image) {
+      const res = await fetch(article.image)
+      link.image = await res.buffer()
+    }
+
     await link.save()
     res.status(201).send(link)
   } catch (error) {
@@ -80,5 +94,12 @@ router.delete(routes.api.linksId, auth, async (req, res) => {
   if (link) res.send(link)
   else res.status(404).send()
 })
+
+// async function saveArticleImage(imageUrl) {
+//   const res = await fetch(imageUrl)
+//   const buffer = await res.buffer()
+//   const type = await fileType.fromBuffer(buffer)
+//   fs.writeFileSync(`hero.${type.ext}`, buffer)
+// }
 
 module.exports = router
